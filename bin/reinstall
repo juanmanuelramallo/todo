@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+#
+# Reinstall the gem locally using local code
+
+require "rubygems"
+
+spec = Gem::Specification::load("todo.gemspec")
+system('gem build')
+system("gem install #{spec.name}-#{spec.version.to_s}.gem")

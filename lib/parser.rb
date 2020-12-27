@@ -43,6 +43,11 @@ module ToDo
           options.visualize = v
         end
 
+        parser.on('-V', '--version', 'See the version') do |v|
+          puts VERSION
+          exit 0
+        end
+
         parser.parse!(args)
       end
 
