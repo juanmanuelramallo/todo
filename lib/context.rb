@@ -18,7 +18,7 @@ module ToDo
     end
 
     def file_name
-      "#{options.date.to_s}.md"
+      "#{options.date}.md"
     end
 
     def file_path
