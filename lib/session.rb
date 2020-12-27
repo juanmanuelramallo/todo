@@ -1,16 +1,21 @@
+# frozen_string_literal: true
+
 module ToDo
+  #
+  # Creates or reopens a to-do file for the given date.
+  #
   class Session
     # TODO: Add support for custom templates
     TEMPLATE = ERB.new(<<~ERB).freeze
-  # <%= @date %>
+      # <%= @date %>
 
-  ## To-do
-    -
-  ## Plan
-    -
-  ## Questions
-    -
-  ERB
+      ## To-do
+        -
+      ## Plan
+        -
+      ## Questions
+        -
+    ERB
 
     attr_reader :context
 

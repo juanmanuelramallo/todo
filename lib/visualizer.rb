@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ToDo
   #
   # Relies on pandoc to generate HTML out from a Github flavored markdown file.
@@ -17,7 +19,8 @@ module ToDo
     end
 
     def view
-      raise "Something failed with Pandoc" unless system(command)
+      raise 'Something failed with Pandoc' unless system(command)
+
       update_body_class
       system("open #{tmpfile}")
     end
@@ -27,16 +30,16 @@ module ToDo
     def command
       [
         "pandoc #{context.file_path}",
-        "-f gfm",
-        "-s",
+        '-f gfm',
+        '-s',
         "-o #{tmpfile}",
-        "--metadata title=\"TODO\"",
+        '--metadata title="TODO"',
         "-c #{CSS_URL}"
       ].join(' ')
     end
 
     def tmpfile
-      File.join(Dir.tmpdir, context.file_name) + '.html'
+      "#{File.join(Dir.tmpdir, context.file_name)}.html"
     end
 
     # TODO: This can be updated to just modify the body tag

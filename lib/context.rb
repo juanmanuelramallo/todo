@@ -1,6 +1,11 @@
+# frozen_string_literal: true
+
 module ToDo
+  #
+  # Context object that provides general info for all objects in the to-do app.
+  #
   class Context
-    DIR_PATH = ".todo"
+    DIR_PATH = '.todo'
 
     attr_reader :options
 
@@ -13,7 +18,7 @@ module ToDo
     end
 
     def file_name
-      options.date.to_s + '.md'
+      "#{options.date.to_s}.md"
     end
 
     def file_path

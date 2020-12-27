@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
 module ToDo
+  #
+  # Finds text in to-dos entries. Relies on system's `find' and `grep' commands.
+  #
   class Finder
     attr_reader :context, :query
 

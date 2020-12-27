@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-# TODO: This should be improved. Maybe it's a good idea to start using a gemspec and bundle it as a gem rather than as a ruby script.
+# TODO: This should be improved. Maybe it's a good idea to start using a gemspec and bundle it as a gem rather than as
+#       a ruby script.
 $LOAD_PATH << '~/Desktop/Proyectos/todo/lib'
 require 'todo'
 

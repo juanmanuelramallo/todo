@@ -1,6 +1,11 @@
+# frozen_string_literal: true
+
 module ToDo
+  #
+  # OptionParser wrapper for the to-do app.
+  #
   class Parser
-    Options = Struct.new(:date, :yesterday, :query, :visualize)
+    Options = Struct.new(:date, :yesterday, :query, :visualize, keyword_init: true)
 
     attr_reader :args
 
@@ -21,12 +26,13 @@ module ToDo
 
         TXT
 
-        parser.on("-dDATE", "--date=DATE", "Todo's date") do |d|
-          options.date = d
-        end
-
         parser.on('-y', '--yesterday', "Todo's for yesterday") do |y|
           options.yesterday = y
+          options.date = Date.today - 1
+        end
+
+        parser.on('-dDATE', '--date=DATE', "Todo's date") do |d|
+          options.date = parse_date(d)
         end
 
         parser.on('-fQUERY', '--find=QUERY', 'Looks for query') do |q|
@@ -40,22 +46,19 @@ module ToDo
         parser.parse!(args)
       end
 
-      parse_date!
-
       options
     end
 
     private
 
     def options
-      @options ||= Options.new
+      @options ||= Options.new(date: Date.today)
     end
 
-    def parse_date!
-      options.date = options.yesterday ? (Date.today - 1) : nil
-      options.date ||= case options.date
+    def parse_date(date)
+      case date
       when /[0-9]{4}-[0-9]{2}-[0-9]{2}/
-        Date.parse(options.date)
+        Date.parse(date)
       when nil, ''
         Date.today
       else
@@ -64,4 +67,3 @@ module ToDo
     end
   end
 end
-
