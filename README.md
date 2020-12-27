@@ -6,7 +6,7 @@ Why not?
 
 # How to use
 
-1. `link ./exe/todo /usr/local/bin/todo` or whatever folder that is present in $PATH
+1. `gem install todo_cli_app`
 2. `todo -h` to get started
 
 # Contribute
