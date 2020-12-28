@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 # Reinstall the gem locally using local code
 
-require "rubygems"
+require 'rubygems'
 
-spec = Gem::Specification::load("todo.gemspec")
+spec = Gem::Specification.load('todo.gemspec')
 system('gem build')
-system("gem install #{spec.name}-#{spec.version.to_s}.gem")
+system("gem install #{spec.name}-#{spec.version}.gem")

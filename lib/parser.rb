@@ -5,7 +5,7 @@ module ToDo
   # OptionParser wrapper for the to-do app.
   #
   class Parser
-    Options = Struct.new(:date, :yesterday, :query, :visualize, keyword_init: true)
+    Options = Struct.new(:date, :yesterday, :tomorrow, :query, :visualize, keyword_init: true)
 
     attr_reader :args
 
@@ -20,11 +20,17 @@ module ToDo
           Usage:
             todo -d, --date 2020-12-25  # Open todo for the date
             todo -y, --yesterday        # Open todo yesterday
+            todo -t, --tomorrow         # Open todo for tomorrow
             todo                        # Open todo for today
             todo -f, --find algo        # Looks for todo with word "algo"
             todo -v, --visualize        # Opens an HTML file with the to-dos
 
         TXT
+
+        parser.on('-t', '--tomorrow', "Todo's for tomorrow") do |t|
+          options.tomorrow = t
+          options.date = Date.today + 1
+        end
 
         parser.on('-y', '--yesterday', "Todo's for yesterday") do |y|
           options.yesterday = y
@@ -43,7 +49,7 @@ module ToDo
           options.visualize = v
         end
 
-        parser.on('-V', '--version', 'See the version') do |v|
+        parser.on('-V', '--version', 'See the version') do |_v|
           puts VERSION
           exit 0
         end
