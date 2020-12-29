@@ -19,6 +19,7 @@ module ToDo
     end
 
     def view
+      exit_and_install_pandoc unless system('command -v pandoc', out: ['/dev/null'])
       raise 'Something failed with Pandoc' unless system(command)
 
       update_body_class
@@ -36,6 +37,11 @@ module ToDo
         '--metadata title="TODO"',
         "-c #{CSS_URL}"
       ].join(' ')
+    end
+
+    def exit_and_install_pandoc
+      puts 'Please install pandoc first. https://pandoc.org/installing.html'
+      exit 1
     end
 
     def tmpfile

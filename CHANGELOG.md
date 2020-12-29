@@ -1,3 +1,7 @@
+# master
+
+- Print install pandoc message when pandoc is missing in the system
+
 # 0.2.0
 
 - Add `tomorrow` option to open the to-dos for tomorrow
