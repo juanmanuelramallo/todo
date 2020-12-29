@@ -1,5 +1,7 @@
 # master
 
+# 0.3.0
+
 - Add an editor option in the parser
 - Print a message when the editor is missing
 - Print install pandoc message when pandoc is missing in the system
