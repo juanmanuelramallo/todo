@@ -17,6 +17,10 @@ module ToDo
       File.join(Dir.home, DIR_PATH)
     end
 
+    def editor
+      options.editor || '$EDITOR'
+    end
+
     def file_name
       "#{options.date}.md"
     end

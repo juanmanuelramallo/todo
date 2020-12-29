@@ -5,7 +5,7 @@ module ToDo
   # OptionParser wrapper for the to-do app.
   #
   class Parser
-    Options = Struct.new(:date, :yesterday, :tomorrow, :query, :visualize, keyword_init: true)
+    Options = Struct.new(:date, :editor, :yesterday, :tomorrow, :query, :visualize, keyword_init: true)
 
     attr_reader :args
 
@@ -19,6 +19,7 @@ module ToDo
           A ruby CLI-only To Do app, because why not?
           Usage:
             todo -d, --date 2020-12-25  # Open todo for the date
+            todo -e, --editor code      # Uses code as the editor. Default is $EDITOR.
             todo -y, --yesterday        # Open todo yesterday
             todo -t, --tomorrow         # Open todo for tomorrow
             todo                        # Open todo for today
@@ -39,6 +40,10 @@ module ToDo
 
         parser.on('-dDATE', '--date=DATE', "Todo's date") do |d|
           options.date = parse_date(d)
+        end
+
+        parser.on('-eEDITOR', '--editor=EDITOR', 'Editor command') do |e|
+          options.editor = e
         end
 
         parser.on('-fQUERY', '--find=QUERY', 'Looks for query') do |q|

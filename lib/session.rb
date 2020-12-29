@@ -28,10 +28,17 @@ module ToDo
     end
 
     def start
-      system("$EDITOR #{context.file_path}")
+      exit_and_set_editor unless system("command -v #{context.editor}", out: ['/dev/null'])
+      system("#{context.editor} #{context.file_path}")
     end
 
     private
+
+    def exit_and_set_editor
+      puts "#{context.editor} not found" if context.editor
+      puts "Please set an editor to use with `todo -e EDITOR'. Check `todo -h' for more info."
+      exit 1
+    end
 
     def prepare_todo_file
       return if Dir[context.file_path].any?
